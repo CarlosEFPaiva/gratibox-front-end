@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import ForwardButton from '../../shared/ForwardButton';
-import UnderButtonMessage from '../../shared/UnderButtonMessage';
+import ForwardButton from '../../../shared/ForwardButton';
+import UnderButtonMessage from '../../../shared/UnderButtonMessage';
 
 export default function Buttons() {
     const navigate = useNavigate();

@@ -52,6 +52,14 @@
                 "namedComponents": "function-declaration",
                 "unnamedComponents": "arrow-function"
             }
+        ],
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectPattern": {
+                    "multiline": true
+                }
+            }
         ]
     }
 }

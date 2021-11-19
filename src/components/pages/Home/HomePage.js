@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
+import Logo from '../../../assets/imgs/image05.png';
 import UpperText from './components/UpperText';
 import Buttons from './components/Buttons';
-import Logo from '../../assets/imgs/image05.png';
 
 export default function Homepage() {
     return (

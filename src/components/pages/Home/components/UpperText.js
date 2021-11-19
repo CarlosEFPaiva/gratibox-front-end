@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import PageTitle from '../../shared/PageTitle';
+import PageTitle from '../../../shared/PageTitle';
 
 export default function UpperText() {
     return (
