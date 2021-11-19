@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import Input from '../../../shared/Input';
-import ForwardButton from '../../../shared/ForwardButton';
+import Input from './Input';
+import ForwardButton from './ForwardButton';
 
-export default function SignInForm({ inputs, onSubmit }) {
+export default function FormTemplate({ inputs, onSubmit, buttonText, buttonMarginTop }) {
     return (
         <Wrapper onSubmit={(e) => onSubmit(e)}>
             {inputs.map(({ key, name, type, value, onChange }) => (
@@ -15,8 +15,8 @@ export default function SignInForm({ inputs, onSubmit }) {
                     onChange={onChange}
                 />
             ))}
-            <ForwardButton width="237px" height="58px" fontSize="36px" marginTop="136px" type="submit">
-                Login
+            <ForwardButton width="237px" height="58px" fontSize="36px" marginTop={buttonMarginTop} type="submit">
+                {buttonText}
             </ForwardButton>
         </Wrapper>
     );

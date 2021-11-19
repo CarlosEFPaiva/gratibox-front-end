@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import PageTitle from '../../shared/PageTitle';
-import SignInForm from './components/SignInForm';
+import FormTemplate from '../../shared/FormTemplate';
 import UnderButtonMessage from '../../shared/UnderButtonMessage';
 
 export default function SignIn() {
@@ -18,7 +18,11 @@ export default function SignIn() {
             <PageTitle fontSize="28px" marginBottom="42px">
                 Bem vindo ao Gratibox
             </PageTitle>
-            <SignInForm inputs={inputs} />
+            <FormTemplate
+                inputs={inputs}
+                buttonText="Login"
+                buttonMarginTop="136px"
+            />
             <UnderButtonMessage onClick={() => navigate('/signup')}>
                 Ainda não sou grato
             </UnderButtonMessage>
