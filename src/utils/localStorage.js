@@ -3,7 +3,7 @@ function getLocalUserData() {
     if (localUserData) {
         return JSON.parse(localUserData);
     }
-    return { firstName: 'Carlos', subscriptionPlan: '', subscriptionDate: '', products: [], receivingDate: '' };
+    return { firstName: 'Carlos', subscriptionPlan: 'Mensal', subscriptionDate: '19/11/2021', products: ['Chás', 'Produtos Organicos', 'Incensos'], receivingDate: 20 };
 }
 
 function saveLocalUserData(userData) {

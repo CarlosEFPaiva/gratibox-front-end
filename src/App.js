@@ -8,6 +8,7 @@ import Homepage from './components/pages/Home/HomePage';
 import SignIn from './components/pages/SignIn/SignIn';
 import SignUp from './components/pages/SignUp/SignUp';
 import SubscriptionPlans from './components/pages/SubscriptionPlans/SubscriptionPlans';
+import SubscriptionDetails from './components/pages/SubcriptionDetails.js/SubscriptionDetails';
 
 import UserDataContext from './contexts/UserDataContext';
 
@@ -25,6 +26,7 @@ export default function App() {
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/subscription-plans" element={<SubscriptionPlans />} />
+                    <Route path="/subscription-details" element={<SubscriptionDetails />} />
                 </Routes>
             </UserDataContext.Provider>
         </BrowserRouter>

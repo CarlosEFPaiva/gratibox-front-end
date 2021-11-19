@@ -1,13 +1,12 @@
 import styled from 'styled-components';
-
 import LoggedInUpperText from '../../shared/LoggedInUpperText';
-import AvailablePlans from './components/AvailablePlans';
+import DescriptionBox from './components/DescriptionBox';
 
-export default function SubscriptionPlans() {
+export default function SubscriptionDetails() {
     return (
         <Wrapper>
-            <LoggedInUpperText />
-            <AvailablePlans />
+            <LoggedInUpperText isSubscribed />
+            <DescriptionBox />
         </Wrapper>
     );
 }

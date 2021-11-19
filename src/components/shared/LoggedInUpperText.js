@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 
-import UserDataContext from '../../../../contexts/UserDataContext';
+import UserDataContext from '../../contexts/UserDataContext';
 
-import PageTitle from '../../../shared/PageTitle';
+import PageTitle from './PageTitle';
 
-export default function UpperText() {
+export default function LoggedInUpperText({ isSubscribed }) {
     const { userData } = useContext(UserDataContext);
     const welcomeText = `Bom te ver por aqui, ${userData.firstName}`;
     return (
@@ -13,8 +13,12 @@ export default function UpperText() {
             <PageTitle fontSize="24px" marginBottom="24px">
                 {welcomeText}
             </PageTitle>
-            <Description>
-                Você ainda não assinou um plano, que tal começar agora?
+            <Description isSubscribed={isSubscribed}>
+                {
+                    isSubscribed ?
+                        '"Agradecer é a arte de atrair coisas boas"' :
+                        'Você ainda não assinou um plano, que tal começar agora?'
+                }
             </Description>
         </Wrapper>
     );
@@ -29,7 +33,7 @@ const Wrapper = styled.div`
 
 const Description = styled.span`
     font-size: 18px;
-    margin-bottom: 40px;
+    margin-bottom: ${({ isSubscribed }) => (isSubscribed ? '20px' : '40px')};
     line-height: 22px;
     color: #FFFFFF;
     font-weight: 300;
