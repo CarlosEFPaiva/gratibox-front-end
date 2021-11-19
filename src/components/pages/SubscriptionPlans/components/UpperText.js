@@ -1,15 +1,20 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+
+import UserDataContext from '../../../../contexts/UserDataContext';
 
 import PageTitle from '../../../shared/PageTitle';
 
 export default function UpperText() {
+    const { userData } = useContext(UserDataContext);
+    const welcomeText = `Bom te ver por aqui, ${userData.firstName}`;
     return (
         <Wrapper>
-            <PageTitle fontSize="28px" marginBottom="42px">
-                Bem vindo ao Gratibox
+            <PageTitle fontSize="24px" marginBottom="24px">
+                {welcomeText}
             </PageTitle>
             <Description>
-                Receba em casa um box com chás, produtos organicos, incensos e muito mais...
+                Você ainda não assinou um plano, que tal começar agora?
             </Description>
         </Wrapper>
     );
@@ -23,9 +28,9 @@ const Wrapper = styled.div`
 `;
 
 const Description = styled.span`
-    width: 100%;
-    text-align: center;
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom: 40px;
+    line-height: 22px;
     color: #FFFFFF;
     font-weight: 300;
 `;

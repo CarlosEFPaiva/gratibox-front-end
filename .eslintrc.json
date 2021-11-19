@@ -60,6 +60,9 @@
                     "multiline": true
                 }
             }
-        ]
+        ],
+        "react/jsx-no-constructed-context-values": "off",
+        "no-param-reassign": "off",
+        "import/prefer-default-export": "off"
     }
 }
