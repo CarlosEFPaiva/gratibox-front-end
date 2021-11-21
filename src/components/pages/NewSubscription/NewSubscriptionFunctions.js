@@ -22,7 +22,22 @@ function checkOption(atribute, item, newSubscriptionData, setNewSubscriptionData
     setNewSubscriptionData(updatedObject);
 }
 
+function inputUpdate(e, atribute, newSubscriptionData, setNewSubscriptionData) {
+    const newObject = { ...newSubscriptionData };
+    newObject[atribute] = e.target.value;
+    setNewSubscriptionData(newObject);
+}
+
+function goForward(isFirstPage, setIsFirstPage) {
+    if (isFirstPage) {
+        return setIsFirstPage(false);
+    }
+    return '';
+}
+
 export {
     openNewSubscriptionMenu,
     checkOption,
+    inputUpdate,
+    goForward,
 };

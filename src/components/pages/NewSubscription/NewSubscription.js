@@ -1,20 +1,26 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import ForwardButton from '../../shared/ForwardButton';
 import LoggedInUpperText from '../../shared/LoggedInUpperText';
-import DescriptionBox from './components/NewSubscriptionBox';
+import DeliveryInformationBox from './components/DeliveryInformationBox';
+import NewPlanDescriptionBox from './components/NewPlanDescriptionBox';
+import { goForward } from './NewSubscriptionFunctions';
 
 export default function NewSubscription() {
+    const [isFirstPage, setIsFirstPage] = useState(true);
     return (
         <Wrapper>
             <LoggedInUpperText isSubscribed />
-            <DescriptionBox />
+            <NewPlanDescriptionBox isShown={isFirstPage} />
+            <DeliveryInformationBox isShown={!isFirstPage} />
             <ForwardButton
                 width="202px"
                 height="39px"
                 fontSize="24px"
                 marginTop="8px"
+                onClick={() => goForward(isFirstPage, setIsFirstPage)}
             >
-                Próximo
+                {isFirstPage ? 'Próximo' : 'Finalizar'}
             </ForwardButton>
         </Wrapper>
     );

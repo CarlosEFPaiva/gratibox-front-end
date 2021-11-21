@@ -6,7 +6,7 @@ import ExamplePicture from '../../../../assets/imgs/image03.png';
 import NewSubscriptionContext from '../../../../contexts/NewSubscriptionContext';
 import { openNewSubscriptionMenu } from '../NewSubscriptionFunctions';
 
-export default function DescriptionBox() {
+export default function NewPlanDescriptionBox({ isShown }) {
     const { newSubscriptionData } = useContext(NewSubscriptionContext);
     const deliveryOptions = newSubscriptionData.plan === 'Mensal' ? ['Dia 1°', 'Dia 10', 'Dia 20'] : ['Segunda', 'Quarta', 'Sexta'];
     const newSubscriptionOptions = [
@@ -16,7 +16,7 @@ export default function DescriptionBox() {
     ];
     const [menuActivity, setMenuActivity] = useState([false, true, false]);
     return (
-        <Wrapper>
+        <Wrapper isShown={isShown}>
             <img alt="Medidating Lady" src={ExamplePicture} />
             <div>
                 {newSubscriptionOptions.map((newSubscriptionOption, index) => (
@@ -37,7 +37,7 @@ const Wrapper = styled.section`
     margin: 0px 8px;
     background-color: #FFFFFF;
     border-radius: 25px;
-    display: flex;
+    display: ${({ isShown }) => (isShown ? 'flex' : 'none')};
     flex-direction: column;
     align-items: center;
     & img {
