@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 import Input from './Input';
 import ForwardButton from './ForwardButton';
+import { LoadingDots } from '../../utils/reactLoader';
 
-export default function FormTemplate({ inputs, onSubmit, buttonText, buttonMarginTop }) {
+export default function FormTemplate({ inputs, onSubmit, buttonText, buttonMarginTop, isLoading }) {
     return (
         <Wrapper onSubmit={(e) => onSubmit(e)}>
             {inputs.map(({ key, name, type, value, onChange }) => (
@@ -16,7 +17,7 @@ export default function FormTemplate({ inputs, onSubmit, buttonText, buttonMargi
                 />
             ))}
             <ForwardButton width="237px" height="58px" fontSize="36px" marginTop={buttonMarginTop} type="submit">
-                {buttonText}
+                {isLoading ? <LoadingDots /> : buttonText}
             </ForwardButton>
         </Wrapper>
     );

@@ -1,4 +1,5 @@
-import { sendErrorAlert } from '../../../utils/sweetAlert';
+import api from '../../../service/api';
+import { sendErrorAlert, sendSuccessAlert } from '../../../utils/sweetAlert';
 
 function checkRawRegistrationValues(signUpData) {
     const { name, email, password, confirmPassword } = signUpData;
@@ -26,11 +27,28 @@ function checkRawRegistrationValues(signUpData) {
     return true;
 }
 
-function validateAndSendSignUpValues(event, signUpData) {
+function validateAndSendSignUpValues(event, signUpData, navigate, setIsLoading) {
     event.preventDefault();
     if (checkRawRegistrationValues(signUpData)) {
-        console.log('To be Done');
+        const requestBody = { ...signUpData };
+        delete requestBody.confirmPassword;
+        setIsLoading(true);
+        api.signup(requestBody)
+            .then(async () => {
+                setIsLoading(false);
+                await sendSuccessAlert('Cadastro realizado com sucesso!');
+                navigate('/signin');
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                if (error.response.status === 409) {
+                    return sendErrorAlert('Parece que este email já está cadastrado! Tente fazer login');
+                }
+                return sendErrorAlert('Parece que houve algum erro no servidor! Tente novamente mais tarde');
+            });
     }
 }
 
-export default validateAndSendSignUpValues;
+export {
+    validateAndSendSignUpValues,
+};

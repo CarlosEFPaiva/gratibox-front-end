@@ -5,9 +5,11 @@ import styled from 'styled-components';
 import PageTitle from '../../shared/PageTitle';
 import FormTemplate from '../../shared/FormTemplate';
 import UnderButtonMessage from '../../shared/UnderButtonMessage';
+import { validateAndSendSignUpValues } from './SignUpFunctions';
 
 export default function SignUp() {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const [inputValues, setInputValues] = useState({ name: '', email: '', password: '', confirmPassword: '' });
     const inputs = [
         { key: 'SignIn Input 1', name: 'Nome', type: 'text', value: inputValues.name, onChange: (e) => setInputValues({ ...inputValues, name: e.target.value }) },
@@ -24,6 +26,10 @@ export default function SignUp() {
                 inputs={inputs}
                 buttonText="Cadastrar"
                 buttonMarginTop="54px"
+                isLoading={isLoading}
+                onSubmit={
+                    (e) => validateAndSendSignUpValues(e, inputValues, navigate, setIsLoading)
+                }
             />
             <UnderButtonMessage onClick={() => navigate('/signin')}>
                 Já sou grato
