@@ -11,7 +11,7 @@ export default function NewPlanDescriptionBox({ isShown }) {
     const deliveryOptions = newSubscriptionData.plan === 'Mensal' ? ['Dia 1°', 'Dia 10', 'Dia 20'] : ['Segunda', 'Quarta', 'Sexta'];
     const newSubscriptionOptions = [
         { key: 'subscriptionOption 1', atribute: 'plan', title: 'Plano', inputType: 'radio', items: ['Semanal', 'Mensal'] },
-        { key: 'subscriptionOption 2', atribute: 'deliveryDate', title: 'Entrega', inputType: 'radio', items: deliveryOptions },
+        { key: 'subscriptionOption 2', atribute: 'deliverDate', title: 'Entrega', inputType: 'radio', items: deliveryOptions },
         { key: 'subscriptionOption 3', atribute: 'products', title: 'Quero receber', inputType: 'checkbox', items: ['Chás', 'Incensos', 'Produtos Orgânicos'] },
     ];
     const [menuActivity, setMenuActivity] = useState([false, true, false]);

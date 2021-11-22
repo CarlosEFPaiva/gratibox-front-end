@@ -1,3 +1,5 @@
+import { sendErrorAlert } from '../../../utils/sweetAlert';
+
 function openNewSubscriptionMenu(setMenuActivity, menuIndex) {
     const newMenuActivity = [false, false, false];
     newMenuActivity[menuIndex] = true;
@@ -28,9 +30,23 @@ function inputUpdate(e, atribute, newSubscriptionData, setNewSubscriptionData) {
     setNewSubscriptionData(newObject);
 }
 
-function goForward(isFirstPage, setIsFirstPage) {
+function areInputsValid(newSubscriptionData, isFirstPage) {
     if (isFirstPage) {
-        return setIsFirstPage(false);
+        if (!newSubscriptionData.plan) return sendErrorAlert('Selecione uma opção de plano!');
+        if (!newSubscriptionData.deliverDate) return sendErrorAlert('Selecione uma data para entrega!');
+        if (!newSubscriptionData.products.length) return sendErrorAlert('Selecione ao menos um produto para envio!');
+    } else {
+        return '';
+    }
+    return '';
+}
+
+function goForward(newSubscriptionData, isFirstPage, setIsFirstPage) {
+    if (areInputsValid(newSubscriptionData, isFirstPage)) {
+        if (isFirstPage) {
+            return setIsFirstPage(false);
+        }
+        return '';
     }
     return '';
 }

@@ -6,6 +6,12 @@ function scrollPlansHorizontally(reference, side) {
     }
 }
 
+function startNewSubscription(newSubscriptionData, setNewSubscriptionData, plan, navigate) {
+    setNewSubscriptionData({ ...newSubscriptionData, plan });
+    navigate('/new-subscription');
+}
+
 export {
     scrollPlansHorizontally,
+    startNewSubscription,
 };

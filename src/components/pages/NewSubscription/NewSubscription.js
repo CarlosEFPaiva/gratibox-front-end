@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
+import NewSubscriptionContext from '../../../contexts/NewSubscriptionContext';
 import ForwardButton from '../../shared/ForwardButton';
 import LoggedInUpperText from '../../shared/LoggedInUpperText';
 import DeliveryInformationBox from './components/DeliveryInformationBox';
@@ -8,6 +9,7 @@ import { goForward } from './NewSubscriptionFunctions';
 
 export default function NewSubscription() {
     const [isFirstPage, setIsFirstPage] = useState(true);
+    const { newSubscriptionData } = useContext(NewSubscriptionContext);
     return (
         <Wrapper>
             <LoggedInUpperText isSubscribed />
@@ -18,7 +20,7 @@ export default function NewSubscription() {
                 height="39px"
                 fontSize="24px"
                 marginTop="8px"
-                onClick={() => goForward(isFirstPage, setIsFirstPage)}
+                onClick={() => goForward(newSubscriptionData, isFirstPage, setIsFirstPage)}
             >
                 {isFirstPage ? 'Próximo' : 'Finalizar'}
             </ForwardButton>
