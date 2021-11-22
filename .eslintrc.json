@@ -52,6 +52,19 @@
                 "namedComponents": "function-declaration",
                 "unnamedComponents": "arrow-function"
             }
-        ]
+        ],
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectPattern": {
+                    "multiline": true
+                }
+            }
+        ],
+        "operator-linebreak": [1, "after"],
+        "react/jsx-no-constructed-context-values": "off",
+        "no-param-reassign": "off",
+        "import/prefer-default-export": "off",
+        "no-plusplus": [ 2, { "allowForLoopAfterthoughts": true }]
     }
 }
