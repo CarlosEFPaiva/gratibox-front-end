@@ -1,3 +1,5 @@
+import api from '../../../service/api';
+import { saveSubscriptionLocally, saveTokenAndNameLocally } from '../../../utils/localStorage';
 import { sendErrorAlert } from '../../../utils/sweetAlert';
 
 function areInputsValid(signInData) {
@@ -17,11 +19,32 @@ function areInputsValid(signInData) {
     return true;
 }
 
-function validateInputsAndSendRequest(e, signInData) {
+function validateInputsAndSendRequest(e, signInData, setUserData, setIsLoading, navigate) {
     e.preventDefault();
     if (areInputsValid(signInData)) {
-        console.log('To be Done');
+        setIsLoading(true);
+        api.signin(signInData)
+            .then((res) => {
+                setIsLoading(false);
+                if (res.data.plan) {
+                    setUserData(saveSubscriptionLocally(res.data));
+                    return navigate('/subscription-details');
+                }
+                setUserData(saveTokenAndNameLocally(res.data));
+                return navigate('/subscription-plans');
+            })
+            .catch((error) => {
+                if (error.response.status === 400) {
+                    return sendErrorAlert('Parece que houve algum problema com a validação dos dados. Tente novamente!');
+                }
+                if (error.response.status === 401) {
+                    return sendErrorAlert('Parece que seus dados de email e senhão não conferem. Tente novamente!');
+                }
+                return sendErrorAlert('Parece que houve algum problema com o servidor. Tente novamente mais tarde!');
+            });
     }
 }
 
-export default validateInputsAndSendRequest;
+export {
+    validateInputsAndSendRequest,
+};

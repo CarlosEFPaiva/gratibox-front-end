@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import PageTitle from '../../shared/PageTitle';
 import FormTemplate from '../../shared/FormTemplate';
 import UnderButtonMessage from '../../shared/UnderButtonMessage';
+import { validateInputsAndSendRequest } from './SignInFunctions';
+import UserDataContext from '../../../contexts/UserDataContext';
 
 export default function SignIn() {
     const navigate = useNavigate();
+    const { setUserData } = useContext(UserDataContext);
+    const [isLoading, setIsLoading] = useState(false);
     const [inputValues, setInputValues] = useState({ email: '', password: '' });
     const inputs = [
         { key: 'SignIn Input 1', name: 'Email', type: 'text', value: inputValues.email, onChange: (e) => setInputValues({ ...inputValues, email: e.target.value }) },
@@ -22,6 +26,16 @@ export default function SignIn() {
                 inputs={inputs}
                 buttonText="Login"
                 buttonMarginTop="136px"
+                isLoading={isLoading}
+                onSubmit={
+                    (e) => validateInputsAndSendRequest(
+                        e,
+                        inputValues,
+                        setUserData,
+                        setIsLoading,
+                        navigate,
+                    )
+                }
             />
             <UnderButtonMessage onClick={() => navigate('/signup')}>
                 Ainda não sou grato

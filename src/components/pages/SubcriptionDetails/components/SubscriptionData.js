@@ -9,9 +9,9 @@ import UserProducts from './UserProducts';
 export default function SubscriptionData() {
     const { userData } = useContext(UserDataContext);
     const dataToPrint = [
-        { key: 'SubscriptionDetails 1', type: 'Plano', data: <span>{userData.subscriptionPlan}</span> },
+        { key: 'SubscriptionDetails 1', type: 'Plano', data: <span>{userData.plan}</span> },
         { key: 'SubscriptionDetails 2', type: 'Data da assinatura', data: <span>{userData.subscriptionDate}</span> },
-        { key: 'SubscriptionDetails 3', type: 'Próximas entregas', data: getNextThreeDeliveryDates(userData.subscriptionPlan, userData.receivingDate) },
+        { key: 'SubscriptionDetails 3', type: 'Próximas entregas', data: getNextThreeDeliveryDates(userData.plan, userData.deliverDate) },
     ];
     return (
         <Wrapper>

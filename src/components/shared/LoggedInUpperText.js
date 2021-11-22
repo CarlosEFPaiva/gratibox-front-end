@@ -7,7 +7,7 @@ import PageTitle from './PageTitle';
 
 export default function LoggedInUpperText({ isSubscribed }) {
     const { userData } = useContext(UserDataContext);
-    const welcomeText = `Bom te ver por aqui, ${userData.firstName}`;
+    const welcomeText = `Bom te ver por aqui, ${userData.login}`;
     return (
         <Wrapper>
             <PageTitle fontSize="24px" marginBottom="24px">
