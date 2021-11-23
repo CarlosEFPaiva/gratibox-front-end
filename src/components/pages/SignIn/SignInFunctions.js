@@ -1,4 +1,5 @@
 import api from '../../../service/api';
+import { getDateInDDMMYY } from '../../../utils/dates';
 import { saveSubscriptionLocally, saveTokenAndNameLocally } from '../../../utils/localStorage';
 import { sendErrorAlert } from '../../../utils/sweetAlert';
 
@@ -27,7 +28,10 @@ function validateInputsAndSendRequest(e, signInData, setUserData, setIsLoading, 
             .then((res) => {
                 setIsLoading(false);
                 if (res.data.plan) {
-                    setUserData(saveSubscriptionLocally(res.data));
+                    setUserData(saveSubscriptionLocally({
+                        ...res.data,
+                        subscriptionDate: getDateInDDMMYY(res.data.subscriptionDate),
+                    }));
                     return navigate('/subscription-details');
                 }
                 setUserData(saveTokenAndNameLocally(res.data));

@@ -1,6 +1,9 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import NewSubscriptionContext from '../../../contexts/NewSubscriptionContext';
+import UserDataContext from '../../../contexts/UserDataContext';
+import { LoadingDots } from '../../../utils/reactLoader';
 import ForwardButton from '../../shared/ForwardButton';
 import LoggedInUpperText from '../../shared/LoggedInUpperText';
 import DeliveryInformationBox from './components/DeliveryInformationBox';
@@ -9,7 +12,11 @@ import { goForward } from './NewSubscriptionFunctions';
 
 export default function NewSubscription() {
     const [isFirstPage, setIsFirstPage] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const { userData, setUserData } = useContext(UserDataContext);
     const { newSubscriptionData } = useContext(NewSubscriptionContext);
+    const buttonText = isFirstPage ? 'Próximo' : 'Finalizar';
+    const navigate = useNavigate();
     return (
         <Wrapper>
             <LoggedInUpperText isSubscribed />
@@ -20,9 +27,18 @@ export default function NewSubscription() {
                 height="39px"
                 fontSize="24px"
                 marginTop="8px"
-                onClick={() => goForward(newSubscriptionData, isFirstPage, setIsFirstPage)}
+                disabled={isLoading}
+                onClick={() => goForward(
+                    newSubscriptionData,
+                    isFirstPage,
+                    setIsFirstPage,
+                    setIsLoading,
+                    userData,
+                    setUserData,
+                    navigate,
+                )}
             >
-                {isFirstPage ? 'Próximo' : 'Finalizar'}
+                { isLoading ? <LoadingDots /> : buttonText }
             </ForwardButton>
         </Wrapper>
     );
