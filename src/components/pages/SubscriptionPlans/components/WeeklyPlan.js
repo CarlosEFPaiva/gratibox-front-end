@@ -12,7 +12,7 @@ export default function WeeklyPlan() {
                 <br />
                 Ideal para quem quer exercer a gratidão todos os dias.
             </Description>
-            <Buttons plan="Weekly" />
+            <Buttons plan="Semanal" />
         </Wrapper>
     );
 }

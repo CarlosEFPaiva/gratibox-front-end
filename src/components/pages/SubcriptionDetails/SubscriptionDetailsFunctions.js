@@ -22,14 +22,17 @@ function getNextSelectedDate(fromDate, selectedDate) {
 }
 
 function getNextThreeDeliveryDates(typeOfSubscription, chosenDayOfDeliver) {
+    const possibleChosenDays = ['Segunda', 'Quarta', 'Sexta', 'Dia 1°', 'Dia 10', 'Dia 20'];
+    const compatibleChosenDayNumber = [1, 3, 5, 1, 10, 20];
+    const adjustedDay = compatibleChosenDayNumber[possibleChosenDays.indexOf(chosenDayOfDeliver)];
     const today = new Date();
     const desiredDates = [];
     let nextDate = new Date(today);
     for (let i = 0; i < 3; i++) {
         if (typeOfSubscription === 'Mensal') {
-            nextDate = getNextSelectedDate(nextDate, chosenDayOfDeliver);
+            nextDate = getNextSelectedDate(nextDate, adjustedDay);
         } else {
-            nextDate = getNextSelectedWeekDay(nextDate, chosenDayOfDeliver);
+            nextDate = getNextSelectedWeekDay(nextDate, adjustedDay);
         }
         desiredDates.push({ date: nextDate, key: `Delivery Date ${i + 1}` });
     }

@@ -12,7 +12,7 @@ export default function MonthlyPlan() {
                 <br />
                 Ideal para quem está começando agora.
             </Description>
-            <Buttons plan="Monthly" />
+            <Buttons plan="Mensal" />
         </Wrapper>
     );
 }

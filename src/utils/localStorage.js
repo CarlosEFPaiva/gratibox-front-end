@@ -1,5 +1,3 @@
-import { getDateInDDMMYY } from './dates';
-
 function getLocalUserData() {
     const localUserData = localStorage.getItem('gratibox');
     if (localUserData) {
@@ -16,12 +14,8 @@ function getLocalUserData() {
 }
 
 function saveSubscriptionLocally(subscriptionData) {
-    const adjustedSubscriptionDate = {
-        ...subscriptionData,
-        subscriptionDate: getDateInDDMMYY(subscriptionData.subscriptionDate),
-    };
-    localStorage.setItem('gratibox', JSON.stringify(adjustedSubscriptionDate));
-    return adjustedSubscriptionDate;
+    localStorage.setItem('gratibox', JSON.stringify(subscriptionData));
+    return subscriptionData;
 }
 
 function saveTokenAndNameLocally({ token, login }) {

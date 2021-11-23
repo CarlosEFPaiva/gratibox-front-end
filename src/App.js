@@ -20,7 +20,7 @@ export default function App() {
     const [userData, setUserData] = useState(() => getLocalUserData());
     const [newSubscriptionData, setNewSubscriptionData] = useState({
         plan: '',
-        deliveryDate: '',
+        deliverDate: '',
         products: [],
         name: '',
         adress: '',

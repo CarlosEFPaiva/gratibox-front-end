@@ -10,7 +10,7 @@ export default function DeliveryInformationBox({ isShown }) {
     const { newSubscriptionData, setNewSubscriptionData } = useContext(NewSubscriptionContext);
     const fullLengthInputs = [
         { key: 'New Subscription Input 1', placeholder: 'Nome completo', atribute: 'name', type: 'text' },
-        { key: 'New Subscription Input 2', placeholder: 'Endereço de entrega', atribute: 'address', type: 'text' },
+        { key: 'New Subscription Input 2', placeholder: 'Endereço de entrega', atribute: 'adress', type: 'text' },
         { key: 'New Subscription Input 3', placeholder: 'CEP', atribute: 'zipCode', type: 'number' },
     ];
     const halfLengthInputs = [
